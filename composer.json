@@ -1,0 +1,21 @@
+{
+    "name": "game-scan/WoWActivityTweetBot",
+    "description": "Auto tweet activity for a player in wow",
+    "keywords": [
+        "Game-Scan",
+        "WoWActivityTweetBot"
+    ],
+    "homepage": "https://github.com/Game-scan/WoWActivityTweetBot",
+    "license": "MIT",
+    "require": {
+        "php" : ">=5.3.0",
+        "abraham/twitteroauth": "0.5.*",
+        "game-scan/wow": "0.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "GameScan\\WoWActivityTweetBot\\": "src"
+        }
+    }
+
+}
