@@ -6,12 +6,15 @@ A light application witch tweet for each new player activity on world of warcraf
 
 ## Install
 
-
+Use composer to load dependencies, then set .env credential (like on .env.example)
 
 ## Usage
 
 
-
+Call bot checkUpdate method at regular interval (use cron), this method is called on index.php script
+```php
+    (new \GameScan\WoWActivityTweetBot\Bot())->checkUpdate();
+```
 
 
 ## Security
