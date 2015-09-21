@@ -1,5 +1,7 @@
 <?php namespace GameScan\WoWActivityTweetBot;
 
+use GameScan\Core\Tools\Environment;
+
 class WoWApi
 {
 
@@ -7,9 +9,10 @@ class WoWApi
     protected $api = null;
     public function __construct()
     {
+        $environment = new Environment();
         $this->api = (new \GameScan\WoW\WowApiRequest(new \GameScan\WoW\ApiConfiguration()));
         $this->api->setHost(new \GameScan\WoW\HostInformation\EuHostInformation());
-        $this->player = new \GameScan\WoW\Entity\Player($this->api, "hyjal", "kandran", 'fr_FR');
+        $this->player = new \GameScan\WoW\Entity\Player($this->api, $environment->get("WOW_PLAYER_REALM"), $environment->get("WOW_PLAYER_NAME"), $environment->get("WOW_LOCALE", 'fr_FR'));
     }
 
     public function newFeeds()
@@ -53,12 +56,13 @@ class WoWApi
                 default :
             }
         }
+
         return array_filter($feedsMessages);
     }
 
     public function getLootName($itemId)
     {
-        $itemApi = new \GameScan\WoW\Entity\Item($this->api, $itemId, "fr_FR");
+        $itemApi = new \GameScan\WoW\Entity\Item($this->api, $itemId, (new Environment())->get("WOW_LOCALE", 'fr_FR'));
         return $itemApi->name();
     }
 }
